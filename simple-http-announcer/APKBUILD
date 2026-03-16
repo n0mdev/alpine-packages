@@ -1,0 +1,22 @@
+# Maintainer: n0m <ms@n0m.dev>
+pkgname=simple-http-announcer
+pkgver=0.0.4
+pkgrel=0
+pkgdesc="simple-http-announcer promote/demote scripts"
+arch="noarch"
+license="MIT"
+url="https://github.com/n0mdev/simple-http-announcer"
+depends="curl"
+source="$pkgname-$pkgver.tar.gz::https://github.com/n0mdev/$pkgname/archive/refs/tags/v$pkgver.tar.gz"
+package() {
+    install -Dm755 "$srcdir/$pkgname-$pkgver/usr/bin/simple-http-announcer-promote.sh" \
+        "$pkgdir/usr/bin/simple-http-announcer-promote.sh"
+    install -Dm755 "$srcdir/$pkgname-$pkgver/usr/bin/simple-http-announcer-demote.sh" \
+        "$pkgdir/usr/bin/simple-http-announcer-demote.sh"
+    install -Dm644 "$srcdir/$pkgname-$pkgver/usr/lib/simple-http-announcer/simple-http-announcer-lib.sh" \
+        "$pkgdir/usr/lib/simple-http-announcer/simple-http-announcer-lib.sh"
+    install -Dm644 "$srcdir/$pkgname-$pkgver/etc/init.d/simple-http-announcer" \
+        "$pkgdir/etc/init.d/simple-http-announcer"
+    install -Dm644 "$srcdir/$pkgname-$pkgver/etc/simple-http-announcer.d/endpoint.conf.example" \
+        "$pkgdir/etc/simple-http-announcer.d/endpoint.conf.example"
+}
